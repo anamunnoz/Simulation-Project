@@ -6,6 +6,7 @@
 \usepackage{float}
 \usepackage[text={18cm,21cm},centering]{geometry}
 \usepackage{enumitem}
+\usepackage{amsmath}
 \hypersetup{
 	colorlinks=true,
 	linkcolor=blue,
@@ -34,39 +35,38 @@
 	\section*{Introducción}
 	Este proyecto tiene como objetivo desarrollar una simulación de eventos discretos para entender mejor el problema orientado. Se busca aplicar los principios de la simulación de eventos discretos para modelar y experimentar con estos fenómenos, y obtener resultados que nos ayuden a tomar decisiones informadas.
 	
-	\subsection*{Objetivos y metas}
-	\begin{enumerate}
-		\item  Desarrollar un sistema que permita modelar el problema
-		\item Utilizar el sistema para basándonos en sus resultados y en el análisis estádistico de estos, tomar decisiones.
-		\end{enumerate}
+		\subsection*{Objetivos y metas}
+			\begin{enumerate}
+				\item  Desarrollar un sistema que permita modelar el problema.
+				\item Utilizar el sistema para basándonos en sus resultados y en el análisis estádistico de estos, tomar decisiones.
+			\end{enumerate}
 	
-	\subsection*{Sistema específico a simular: Central Telefónica}
+		\subsection*{Sistema específico a simular: Central Telefónica}
 	
-	La compañía aérea “Siberia” tiene una centralita de teléfonos con 3 líneas. La empresa tiene un pico de llamadas durante 3 horas, en las que algunos clientes no pueden ponerse en contacto con la empresa debido al intenso tráfico de llamadas (se sabe que si las tres líneas están siendo utilizadas al cliente no se le puede retener). La compañía estima que, debido a la fuerte competencia, el 60\% de las	llamadas no respondidas utiliza otra compañía. Durante las horas punta las llamadas siguen una distribución de Poisson con una media de 20 llamadas hora, mientras que en el resto del tiempo la media es de 5 llamadas hora. Cada telefonista emplea 6 minutos por cada llamada (distribución exponencial). El beneficio de un viaje distribuye normal con una media de  210 euros y varianza de 50. Cada empleado cuesta a la compañía 24 euros/hora y una linea telefonica debe ser atendida por uno de ellos. Se asume que el coste de añadir una línea es despreciable.
-	
-	\begin{itemize}
+		La compañía aérea “Siberia” tiene una centralita de teléfonos con 3 líneas. La empresa tiene un pico de llamadas durante 3 horas, en las que algunos clientes no pueden ponerse en contacto con la empresa debido al intenso tráfico de llamadas (se sabe que si las tres líneas están siendo utilizadas al cliente no se le puede retener). La compañía estima que, debido a la fuerte competencia, el 60\% de las	llamadas no respondidas utiliza otra compañía. Durante las horas punta las llamadas siguen una distribución de Poisson con una media de 20 llamadas hora, mientras que en el resto del tiempo la media es de 5 llamadas hora. Cada telefonista emplea 6 minutos por cada llamada (distribución exponencial). El beneficio de un viaje distribuye normal con una media de  210 euros y varianza de 50. Cada empleado cuesta a la compañía 24 euros/hora y una linea telefonica debe ser atendida por uno de ellos. Se asume que el coste de añadir una línea es despreciable.
 		
-		\item Parámetros del sistema:
-		\begin{itemize}[left=2em]
-			\item Media de llamadas en horas no punta
-			\item Media de llamadas en horas punta
-			\item Media del tiempo de atención de una llamada
-			\item Duración de la simulacóon
-			\item Cantidad de líneas operando
-			\item Intervalos de horas punta
-			\item Media del costo de un viaje
-			\item Varianza del costo de un viaje
-			\item Valor de probabilidad de que los clientes usen otra compañía
-		\end{itemize}
+		\begin{itemize}
+			\item Parámetros del sistema:
+				\begin{itemize}[left=2em]
+					\item Media de llamadas en horas no punta.
+					\item Media de llamadas en horas punta.
+					\item Media del tiempo de atención de una llamada.
+					\item Duración de la simulacóon.
+					\item Cantidad de líneas operando.
+					\item Intervalos de horas punta.
+					\item Media del costo de un viaje.
+					\item Varianza del costo de un viaje.
+					\item Valor de probabilidad de que los clientes usen otra compañía.
+				\end{itemize}
 		
-		\item Variables de interés:
-		\begin{itemize}[left=2em]
-			\item Llamadas atendidas
-			\item Llamadas perdidas
-			\item Ganancia por llamadas atendidas
-			\item Cantidad de clientes que usaron otra compañía
+			\item Variables de interés:
+				\begin{itemize}[left=2em]
+					\item Llamadas atendidas.
+					\item Llamadas perdidas.
+					\item Ganancia por llamadas atendidas.
+					\item Cantidad de clientes que usaron otra compañía.
+				\end{itemize}
 		\end{itemize}
-	\end{itemize}
 	
 	\section*{Detalles de implementación}
 	En el directorio source se encuentra el archivo que contienen el código fuente de la simulación. El mismo se divide en diferentes secciones:
@@ -77,20 +77,20 @@
 		\item \textbf{make\_central:} crea una central telefónica con la cantidad de líneas especificada. La central se comporta como un arreglo de booleanos, donde en la i-ésima posición se almacena si dicha línea está ocupada o no.
 		\item \textbf{calculate\_salaries:} dado una cantidad de líneas y un salario por horas determina cuanto dinero pierde la central como pago a los trabajadores.
 		\item \textbf{stop\_case:} determina si la simulación debe detenerse. Para esto realiza un análisis por intervalos de confianza para comprobar si se tiene suficiente información de las variables objetivos.
-		\item \textbf{mean\_call:} determina en un momento de la simulación la media de la distribución con la que llegan llamadas a la central en dependencia de las horas puntas
+		\item \textbf{mean\_call:} determina en un momento de la simulación la media de la distribución con la que llegan llamadas a la central en dependencia de las horas puntas.
 	\end{itemize}
 	
 	Se definen estructuras de utilidad para la simulación:
 	\begin{itemize}[left=2em]
-		\item \textbf{class Config:}  entidad donde se almacenan los parámetros de la simulación
-		\item \textbf{class Event:} representación de un evento. Estos tienen tipo, tiempo restante para que ocurra y posición en la central en caso de ser una llamada que está siendo atendida
+		\item \textbf{class Config:}  entidad donde se almacenan los parámetros de la simulación.
+		\item \textbf{class Event:} representación de un evento. Estos tienen tipo, tiempo restante para que ocurra y posición en la central en caso de ser una llamada que está siendo atendida.
 	\end{itemize}
 	
 	\subsection*{Simulación del problema}
 	Se encuentra el código principal de la simulación que funciona con una cola de eventos de la siguiente manera:
 	\begin{itemize}[left=2em]
-		\item Se crea una central telefónica 
-		\item Se genera la primera llamada entrante y se inserta en la cola 
+		\item Se crea una central telefónica
+		\item Se genera la primera llamada entrante y se inserta en la cola
 		\item Mientras no se cumpla el caso de parada se simula un día en la central. Para esto se toma el evento de la cola más próximo a ocurrir 
 		\begin{itemize}
 			\item En caso de ser una llamada: se inserta en la cola y se generan dos nuevos eventos: la finalización de esta y la entrada de una nueva llamada.
@@ -238,6 +238,124 @@
 					\item Se utiliza un intervalo de confianza $\alpha$ = 0.05 y por lo tanto Z{$\alpha$}/2 = 1.96. Esto significa que será cierto, con una probabilidad (aproximadamente) igual a 0.95, que la media muestral X y la desviación estándar muestral S serán tales que la media poblacional estará entre $X \pm 1.96/\sqrt{n}$
 				\end{itemize}
 			\end{itemize}
+			
+			\section*{Modelo matemático}
+			\subsection*{Descripción del modelo de como modelos probabilísticos}
+				\begin{itemize}
+					\item Modelo de llegada de llamadas
+						\begin{itemize}
+							\item Utiliza una distribución de Poisson para modelar las llegadas de llamadas:
+								\begin{itemize}
+									\item Durante horas punta (3 horas): $\lambda$ = 20 llamadas por hora.
+									\item Fuera de horas punta: $\lambda$ = 5 llamadas por hora.
+								\end{itemize}
+							\end{itemize}
+					\item Modelo de Duración de Llamadas:
+						\begin{itemize}
+							\item Utiliza una distribución exponencial para modelar el tiempo de atención de llamadas, con una media de 6 minutos por llamada ($\mu$ = 1/6).
+						\end{itemize}
+					\item Modelo de Beneficios:
+						\begin{itemize}
+							\item Los beneficios de los viajes se distribuyen de manera normal con una media de 210 euros y una varianza de 50 euros.
+						\end{itemize}
+					\item Costos:
+						\begin{itemize}
+							\item Cada empleado cuesta 24 euros por hora.
+							\item Cada línea debe ser atendida por un empleado, por lo que el costo por hora para las tres líneas es 3*24 euros
+						\end{itemize}
+				\end{itemize}
+						
+			\subsection*{Supuestos y restricciones}
+				\begin{itemize}
+					\item Supuestos:
+						\begin{itemize}
+							\item Las llamadas no atendidas son perdidas en un 60\%.
+							\item Los tiempos de llegada y de atención de llamadas son independientes.
+							\item El costo de añadir una línea adicional es despreciable.
+						\end{itemize}
+					\item Restricciones:
+						\begin{itemize}
+							\item La central tiene un máximo de 3 líneas.
+							\item Solo una llamada puede ser atendida por cada línea a la vez.
+							\item Las llamadas no pueden ser retenidas si todas las líneas están ocupadas.
+						\end{itemize}
+				\end{itemize}
+					
+			\subsection*{Comparación de los resultados obtenidos y los resultados teóricos}
+		
+			Un sistema con servidores en paralelo se caracteriza porque hay más de un servidor que ejecuta la misma función con la misma eficiencia. En un sistema con servidores en paralelo no hay varias colas, sino una única cola. En algunos de estos, la cola no puede albergar a un número indefinido de clientes. En este caso se dice que el sistema es de capacidad limitada. 
+			Existe un caso especial de la cola con límite de capacidad y es cuando este límite coincide con el número de servidores. Es decir, no se puede generar cola.
+			Esta situación da lugar a la distribución de probabilidad conocida como Erlang en un sistema de copas M/M/C/C.
+			Este modelo es válido porque las llamadas llegan siguiendo un proceso de Poisson, los tiempos de servicio son exponenciales, y hay un número fijo de tres líneas telefónicas (C=3) sin capacidad de espera adicional.
+			
+				\subsubsection*{Nomenclatura}
+					\begin{itemize}
+						\item $\lambda$: Número de llegadas por unidad de tiempo
+						\item $\mu$:  Número de servicios por unidad de tiempo si el servidor está ocupado
+						\item c= Número de servidores en paralelo
+						\item L : Número medio de clientes en el sistema
+						\item W: Tiempo medio de estancia de los clientes en el sistema
+						\item $P_c$:  probabilidad de que el sistema esté lleno
+						\item r: número medio de clientes que se atienden por término medio
+					\end{itemize}
+			
+			\subsubsection*{Probabilidad de que el sistema este lleno}
+			La descripción teórica del modelo plantea que la probabilidad de que el sistema este lleno es de:
+			 \[
+			 P_c = \frac{\frac{r^c}{c!}}{\sum_{i=0}^{c} \frac{r^i}{i!}}, \quad 
+			 r = \frac{\lambda}{\mu}
+			 \]
+			 
+			Dado que el problema analizado contiene 2 intervalos de tiempo de interés, determinados por si en cierto momento es una hora punta o no, es necesario analizar la disponibiliad del sistema en ambos momentos del día.
+			
+			Al sustituir las variables que describen el problema en las horas punta, se obtiene un valor de \textbf{8/38}, mientras que para los valores que describen el resto del tiempo se obtiene un valor de \textbf{1/79}. 
+			
+			Utilizando entonces la probabilidad condicional obtenemos que la probabilidad de que el sistema este lleno es:
+			
+			\begin{equation}
+				P_c = P_{punta}\cdot P_{c\_punta} + P_{nopunta} \cdot P_{c\_nopunta}
+			\end{equation}
+			
+			 Dando como resultado que dado una llamada entrante, el sistema estará ocupado con una probabilidad de aproximadamente\textbf{0.037} 
+			
+			Para contrastar este resultado con la simulación, se realiza un análisis de la misma durante una cantidad significativa de días determinada por la condición de parada de la misma .En cada uno de estos días se elige un momento aleatorio con el objetivo de comprobar la disponibilidad del sistema.
+		
+			Luego de este análisis se pudo comprobar que la proporción de la cantidad de momentos elegidos donde el sistema estaba lleno con respecto al total de estos oscilaba entre \textbf{0.037 y 0.042}. Valores bastantes cercanos al resultado teóricamente correcto.
+			
+			\subsubsection*{Cantidad media de clientes en el sistema}
+			La descripción teórica del modelo plantea que la fórmula para determinar la media de clientes en el sistema es:
+			\[
+			L = r \cdot (1 - P_c)
+			\]
+			
+			Para comprobar esto, se realiza un analisis en los 2 casos de interés anteriormente mencionados. Al sustituir las variables que describen el problema en las horas punta, se obtiene un valor para la media de \textbf{1.5789}. 
+			
+			Para comprobar este resultado en la simulación se realiza un análisis semejante al utilizado en la fórmula \textbf{(1)}, seleccionando un momento aleatorio del intervalo del día que representa la hora punta y comprobando la capacidad del sistema.
+			
+			Luego de promediar los resultados en cada uno de estos momentos se obtuvo valores alrededor de \textbf{1.53}. Siendo estos unos resultados muy próximos a los esperados.
+			
+			Sustituyendo luego las variables que describen el problema en las horas ho punta, se obtiene un valor para la media de  \textbf{0.49367089}
+			Al realizar un procedimiento análogo al anterior, esta vez seleccionando momentos de tiempo fuera del horario pico, se obtuvo
+			una media de \textbf{0.51}.
+		
+			
+			\subsubsection*{Estancia media de los clientes en el sistema}
+			Para un constraste final con los resultados teóricos y con el fin de validar una elección correcta del modelo que describe el problema. Se comprueba la media de estancia de los clientes en el sistema mediante la fórmula: 
+			\[
+			W = \frac{L}{\lambda \cdot (1 - P_c)}
+			\]
+			
+			Se analiza en cada uno de los intervalos de interés por separado. Se puede observar entonces que tanto al sustituir por las variables que describen el problema en las horas punta, como al usar el resto, obtenemos un valor de \textbf{6}. El cual es un valor esperado debido a que este es el tiempo medio de atención de los clientes
+			del sistema a analizar en cualquier momento del día.
+			
+			\subsubsection*{Conclusiones}
+			En general, se obtuvo un conjunto de resultados semejantes a los teóricamente correctos, por lo que la situación ha sido representada con cierto grado de similaridad al comprotamiento esperado. Brindando esto una mayor seguridad con respecto a la toma de decisiones
+			sobre la gestion de la central.
+			
+			
+			
+			
+			
 			
 			
 		
